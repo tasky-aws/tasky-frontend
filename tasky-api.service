@@ -1,0 +1,8 @@
+[Unit]
+Description=Tasky API
+
+[Service]
+ExecStart=/usr/local/bin/tasky-api
+
+[Install]
+WantedBy=multi-user.target 

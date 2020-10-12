@@ -1,0 +1,9 @@
+
+[Unit]
+Description=Tasky
+
+[Service]
+ExecStart=CHANGEME/tasky-frontend/tasky
+
+[Install]
+WantedBy=multi-user.target 

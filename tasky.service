@@ -1,0 +1,9 @@
+
+[Unit]
+Description=Tasky
+
+[Service]
+ExecStart=/home/donovand/projects/tasky-frontend/dist/electron/tasky-linux-x64/tasky
+
+[Install]
+WantedBy=multi-user.target 

@@ -1,0 +1,11 @@
+{
+  "extends": "@quasar/app/tsconfig-preset",
+  "compilerOptions": {
+    "experimentalDecorators": true,
+    "baseUrl": ".",
+  },
+  "typeRoots": [
+    "./node_modules/@types",
+    "./node_modules/@danmarshall/deckgl-typings"
+  ]
+}

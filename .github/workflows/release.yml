@@ -47,6 +47,6 @@ jobs:
         uses: svenstaro/upload-release-action@v1-release
         with:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
-          file: dist/electron/${{ matrix.asset_name }}.tar.gz
+          file: ${{ matrix.asset_name }}.tar.gz
           asset_name: ${{ matrix.asset_name }}
           tag: ${{ github.event.client_payload.new_version }}

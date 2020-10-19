@@ -38,7 +38,7 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: 14.4.0
-      - run: yarn global add @quasar/cli && yarn run build
+      - run: yarn global add @quasar/cli
       - run: yarn install
       - run: yarn run build
       - name: Upload binary to release

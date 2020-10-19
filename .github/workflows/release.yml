@@ -28,12 +28,16 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
-      - name: Cache cargo bin
-        uses: actions/cache@v2
+#      - name: Cache cargo bin
+#        uses: actions/cache@v2
+#        with:
+#          path: |
+#            ~/.dist
+#          key: ${{ runner.os }}-cargo-${{ hashFiles('**/Cargo.lock') }}
+      - name: Install Node.js, NPM and Yarn
+        uses: actions/setup-node@v1
         with:
-          path: |
-            ~/.dist
-          key: ${{ runner.os }}-cargo-${{ hashFiles('**/Cargo.lock') }}
+          node-version: 14.4.0
       - name: Build/release Electron app
           uses: samuelmeuli/action-electron-builder@v1
           with:

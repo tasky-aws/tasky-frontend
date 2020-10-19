@@ -16,6 +16,7 @@ jobs:
   release:
     name: Build and Release
     runs-on: ${{ matrix.os }}
+    strategy:
       matrix:
         include:
           - os: ubuntu-latest

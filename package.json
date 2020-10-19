@@ -11,7 +11,7 @@
     "lint": "eslint --ext .js,.ts,.vue ./",
     "test": "echo \"No test specified\" && exit 0",
     "dev": "quasar dev -m electron",
-    "build": "quasar build",
+    "build": "quasar build -m electron",
     "build_electron": "quasar build -m electron",
     "build:pwa": "quasar build -m pwa"
   },

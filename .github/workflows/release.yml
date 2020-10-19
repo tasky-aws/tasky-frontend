@@ -39,8 +39,8 @@ jobs:
         with:
           node-version: 14.4.0
       - uses: borales/actions-yarn@v2.0.0
-          with:
-            cmd: global add @quasar/cli
+        with:
+          cmd: global add @quasar/cli
       - uses: borales/actions-yarn@v2.0.0
         with:
           cmd: build

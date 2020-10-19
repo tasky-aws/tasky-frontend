@@ -28,26 +28,22 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
-#      - name: Cache cargo bin
-#        uses: actions/cache@v2
-#        with:
-#          path: |
-#            ~/.dist
-#          key: ${{ runner.os }}-cargo-${{ hashFiles('**/Cargo.lock') }}
+      - name: Cache cargo bin
+        uses: actions/cache@v2
+        with:
+          path: |
+            ~/.cache/yarn/v6
+          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
       - name: Install Node.js, NPM and Yarn
         uses: actions/setup-node@v1
         with:
           node-version: 14.4.0
-      - name: Use joshstrange/setup-quasar
-        uses: joshstrange/setup-quasar@v1
+      - uses: borales/actions-yarn@v2.0.0
+          with:
+            cmd: global add @quasar/cli
+      - uses: borales/actions-yarn@v2.0.0
         with:
-          cordova-version: 9
-          install-java: false
-          install-pods: false
-
-      - name: Build
-        run: |
-          quasar build -m electron
+          cmd: build
       - name: Upload binary to release
         uses: svenstaro/upload-release-action@v1-release
         with:

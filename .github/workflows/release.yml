@@ -23,8 +23,8 @@ jobs:
             artifact_name: tasky-linux-x64
             asset_name: tasky-linux-x64
           - os: macos-latest
-            artifact_name: tasky-macos-x64
-            asset_name: tasky-macos-x64
+            artifact_name: tasky-darwin-x64
+            asset_name: tasky-darwin-x64
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
@@ -41,6 +41,7 @@ jobs:
       - run: yarn global add @quasar/cli
       - run: yarn install
       - run: yarn run build
+      - run: ls dist/electron
       - name: Upload binary to release
         uses: svenstaro/upload-release-action@v1-release
         with:

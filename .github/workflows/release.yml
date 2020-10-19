@@ -16,7 +16,6 @@ jobs:
   release:
     name: Build and Release
     runs-on: ${{ matrix.os }}
-    strategy:
       matrix:
         include:
           - os: ubuntu-latest
@@ -38,12 +37,16 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: 14.4.0
-      - name: Build/release Electron app
-        uses: samuelmeuli/action-electron-builder@v1
+      - name: Use joshstrange/setup-quasar
+        uses: joshstrange/setup-quasar@v1
         with:
-          # GitHub token, automatically provided to the action
-          # (No need to define this secret in the repo settings)
-          github_token: ${{ secrets.github_token }}
+          cordova-version: 9
+          install-java: false
+          install-pods: false
+
+      - name: Build
+        run: |
+          quasar build -m electron
       - name: Upload binary to release
         uses: svenstaro/upload-release-action@v1-release
         with:

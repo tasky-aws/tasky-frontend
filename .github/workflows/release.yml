@@ -42,7 +42,7 @@ jobs:
       - run: yarn install
       - run: yarn run build
       - run: ls dist/electron
-      - run: tar -czvf {{ matrix.asset_name }}.tar.gz dist/electron/{{ matrix.artifact_name }}
+      - run: tar -czvf ${{ matrix.asset_name }}.tar.gz dist/electron/${{ matrix.artifact_name }}
       - name: Upload binary to release
         uses: svenstaro/upload-release-action@v1-release
         with:

@@ -4,7 +4,7 @@ sudo mv tasky-linux-x64 ~/tasky-frontend
 
 mkdir -p  ~/.config/systemd/user/
 
-sd 'CHANGEME' '$HOME' $(fd --type file) 
+sd 'CHANGEME' '$HOME' $(fd --type file)
 
 sudo mv tasky-api.service ~/.config/systemd/user/
 sudo mv tasky.service ~/.config/systemd/user/
@@ -13,4 +13,5 @@ systemctl --user start tasky.service
 systemctl --user status tasky.service
 systemctl --user status tasky.service
 systemctl --user status tasky-api.service
+
 

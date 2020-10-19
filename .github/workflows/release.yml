@@ -41,6 +41,7 @@ jobs:
       - run: yarn global add @quasar/cli
       - run: export PATH="$(yarn global bin):$PATH" >> ~/.bashrc
       - run: source ~/.bashrc
+      - run: echo $PATH
       - run: quasar version
       - run: quasar build -m electron
       - name: Upload binary to release

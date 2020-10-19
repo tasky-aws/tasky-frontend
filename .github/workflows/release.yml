@@ -1,0 +1,48 @@
+name: Build and upload binaries to release
+
+on:
+  repository_dispatch:
+    types: [tag-created]
+
+jobs:
+  cancel:
+    name: Cancel Previous Runs
+    runs-on: ubuntu-latest
+    steps:
+      - name: cancel running workflows
+        uses: everphone-gmbh/cancel-previous-workflows@v5
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+  release:
+    name: Build and Release
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        include:
+          - os: ubuntu-latest
+            artifact_name: tasky-frontend-linux-x64
+            asset_name: tasky-linux-x64
+          - os: macos-latest
+            artifact_name: tasky-frontend-macos-x64
+            asset_name: tasky-macos-x64
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Cache cargo bin
+        uses: actions/cache@v2
+        with:
+          path: |
+            ~/.dist
+          key: ${{ runner.os }}-cargo-${{ hashFiles('**/Cargo.lock') }}
+      - name: Use joshstrange/setup-quasar
+        uses: joshstrange/setup-quasar@v1
+      - name: Build
+        run: |
+          quasar build -m electron
+      - name: Upload binary to release
+        uses: svenstaro/upload-release-action@v1-release
+        with:
+          repo_token: ${{ secrets.GITHUB_TOKEN }}
+          file: dist/electron/${{ matrix.artifact_name }}
+          asset_name: ${{ matrix.asset_name }}
+          tag: ${{ github.event.client_payload.new_version }}

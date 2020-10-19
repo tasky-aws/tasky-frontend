@@ -39,7 +39,7 @@ jobs:
         with:
           node-version: 14.4.0
       - run: yarn global add @quasar/cli
-      - run: yarn run build
+      - run: ls && quasar build -m electron
       - name: Upload binary to release
         uses: svenstaro/upload-release-action@v1-release
         with:

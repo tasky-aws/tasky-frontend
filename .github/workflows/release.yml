@@ -2,7 +2,7 @@ name: Build and upload binaries to release
 
 on:
   repository_dispatch:
-    types: [tag-created]
+    types: [ tag-created ]
 
 jobs:
   cancel:
@@ -34,11 +34,12 @@ jobs:
           path: |
             ~/.dist
           key: ${{ runner.os }}-cargo-${{ hashFiles('**/Cargo.lock') }}
-      - name: Use joshstrange/setup-quasar
-        uses: joshstrange/setup-quasar@v1
-      - name: Build
-        run: |
-          quasar build -m electron
+      - name: Build/release Electron app
+          uses: samuelmeuli/action-electron-builder@v1
+          with:
+            # GitHub token, automatically provided to the action
+            # (No need to define this secret in the repo settings)
+            github_token: ${{ secrets.github_token }}
       - name: Upload binary to release
         uses: svenstaro/upload-release-action@v1-release
         with:

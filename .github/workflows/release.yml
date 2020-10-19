@@ -39,7 +39,7 @@ jobs:
         with:
           node-version: 14.4.0
       - run: yarn global add @quasar/cli && yarn run build
-      - run: yarn global bin
+      - run: yarn install
       - run: echo 'export PATH="$(yarn global bin):$PATH"' >> ~/.bashrc
       - run: source ~/.bashrc
       - run: quasar build -m electron

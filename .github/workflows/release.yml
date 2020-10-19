@@ -41,6 +41,7 @@ jobs:
       - run: yarn global add @quasar/cli && yarn run build
       - run: yarn install
       - run: yarn run build
+      - name: Upload binary to release
         uses: svenstaro/upload-release-action@v1-release
         with:
           repo_token: ${{ secrets.GITHUB_TOKEN }}

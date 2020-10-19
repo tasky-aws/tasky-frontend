@@ -22,9 +22,9 @@ jobs:
           - os: ubuntu-latest
             artifact_name: tasky-frontend-linux-x64
             asset_name: tasky-linux-x64
-          - os: macos-latest
-            artifact_name: tasky-frontend-macos-x64
-            asset_name: tasky-macos-x64
+#          - os: macos-latest
+#            artifact_name: tasky-frontend-macos-x64
+#            asset_name: tasky-macos-x64
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
